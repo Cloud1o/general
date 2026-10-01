@@ -2,19 +2,19 @@
 
 ## MCP server
 
-`.mcp.json` registers a project-scoped MCP server named `database`. It is the
+`.mcp.json` registers a project-scoped MCP server named `odoo`, pointing at
+`https://tester-clouded.odoo.com/mcp`. It is the
 committed equivalent of:
 
 ```
-claude mcp add --scope project --transport stdio database -- \
-  npx -y mcp-remote <database_url>/mcp --header "Authorization: Bearer <API_KEY>"
+claude mcp add --scope project --transport stdio odoo -- \
+  npx -y mcp-remote https://tester-clouded.odoo.com/mcp --header "Authorization: Bearer <ODOO_API_KEY>"
 ```
 
-Secrets are not stored in the file. Export them before starting Claude Code:
+The API key is not stored in the file. Export it before starting Claude Code:
 
 ```
-export DATABASE_URL="https://your-database.example.com"   # no trailing slash
-export API_KEY="your-api-key"
+export ODOO_API_KEY="your-odoo-api-key"
 claude
 ```
 

@@ -1,17 +1,17 @@
 {
   "mcpServers": {
-    "database": {
+    "odoo": {
       "type": "stdio",
       "command": "npx",
       "args": [
         "-y",
         "mcp-remote",
-        "${DATABASE_URL}/mcp",
+        "https://tester-clouded.odoo.com/mcp",
         "--header",
         "Authorization:${AUTH_HEADER}"
       ],
       "env": {
-        "AUTH_HEADER": "Bearer ${API_KEY}"
+        "AUTH_HEADER": "Bearer ${ODOO_API_KEY}"
       }
     }
   }
