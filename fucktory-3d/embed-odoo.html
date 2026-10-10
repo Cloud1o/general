@@ -1,0 +1,162 @@
+<!-- FUCKTORY · Tour 3D — incolla tutto questo in un blocco "Embed Code" di Odoo -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+.fk3d{--ink:#0f0e0d;--cement:#1c1a18;--line:#34302b;--wall:#ece6dc;--dust:#9b9286;--leather:#c47a3f;
+  --fd:"IM Fell English SC","Times New Roman",Georgia,serif;--fb:"Archivo","Helvetica Neue",Arial,sans-serif;--fm:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  background:var(--ink);color:var(--wall);font-family:var(--fb);font-size:16px;line-height:1.55;padding:clamp(28px,5vw,64px) clamp(16px,4vw,40px);color-scheme:dark}
+.fk3d *{box-sizing:border-box}
+.fk3d .fk-in{max-width:1240px;margin:0 auto;display:grid;gap:clamp(20px,3vw,32px)}
+.fk3d .fk-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px 32px}
+.fk3d .fk-eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--leather);margin:0 0 12px}
+.fk3d h2.fk-title{font-family:var(--fd);font-weight:400;font-size:clamp(44px,8vw,96px);line-height:.92;margin:0;color:var(--wall);letter-spacing:-.01em}
+.fk3d .fk-lead{max-width:52ch;color:var(--dust);margin:16px 0 0;font-size:17px}
+.fk3d .fk-lead strong{color:var(--wall);font-weight:500}
+.fk3d .fk-ctas{display:flex;flex-wrap:wrap;gap:10px}
+.fk3d .fk-btn{font:500 14px/1 var(--fb);color:var(--wall)!important;text-decoration:none!important;padding:13px 18px;border:1px solid var(--line);border-radius:2px;background:transparent;transition:border-color .2s,background .2s,color .2s}
+.fk3d .fk-btn:hover{border-color:var(--wall)}
+.fk3d .fk-btn.fk-primary{background:var(--leather);border-color:var(--leather);color:var(--ink)!important}
+.fk3d .fk-btn.fk-primary:hover{background:var(--wall);border-color:var(--wall)}
+.fk3d .fk-stage{display:grid;grid-template-columns:minmax(0,1fr) 300px;border:1px solid var(--line);background:var(--cement)}
+.fk3d .fk-viewer{position:relative;min-width:0;border-right:1px solid var(--line)}
+.fk3d model-viewer{width:100%;height:clamp(420px,58vw,720px);display:block;background:var(--ink);--poster-color:var(--ink);--progress-bar-color:transparent}
+.fk3d .fk-bar{position:absolute;left:0;right:0;top:0;height:2px;background:var(--leather);transform-origin:left;transform:scaleX(0);transition:transform .2s,opacity .4s}
+.fk3d .fk-hint{position:absolute;left:14px;bottom:12px;margin:0;font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dust);pointer-events:none;background:rgba(15,14,13,.7);padding:6px 8px}
+.fk3d .fk-views{position:absolute;right:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.fk3d .fk-view{font:500 12px/1 var(--fm);color:var(--wall);background:rgba(15,14,13,.75);border:1px solid var(--line);padding:8px 10px;cursor:pointer;border-radius:0}
+.fk3d .fk-view:hover,.fk3d .fk-view[aria-pressed="true"]{border-color:var(--leather);color:var(--leather)}
+.fk3d .fk-hs{width:18px;height:18px;padding:0;border-radius:50%;border:3px solid var(--wall);background:var(--leather);cursor:pointer;position:relative;box-shadow:0 0 0 2px var(--ink),0 2px 8px rgba(0,0,0,.6);transition:opacity .25s,transform .2s}
+.fk3d .fk-hs:not([data-visible]){opacity:.55}
+.fk3d .fk-hs:hover,.fk3d .fk-hs.on{transform:scale(1.25);background:var(--ink);border-color:var(--leather)}
+.fk3d .fk-hs span{position:absolute;left:20px;top:50%;transform:translateY(-50%);white-space:nowrap;font:500 12px/1 var(--fb);color:var(--wall);background:var(--ink);border:1px solid var(--line);padding:6px 8px;opacity:0;pointer-events:none;transition:opacity .2s}
+.fk3d .fk-hs:hover span,.fk3d .fk-hs.on span{opacity:1}
+.fk3d .fk-places{display:flex;flex-direction:column;min-width:0}
+.fk3d .fk-places h3{font-family:var(--fm);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dust);margin:0;padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.fk3d .fk-place{all:unset;display:grid;gap:4px;padding:14px 18px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .2s}
+.fk3d .fk-place:hover,.fk3d .fk-place.on{background:rgba(196,122,63,.12)}
+.fk3d .fk-place b{font-family:var(--fd);font-weight:400;font-size:21px;line-height:1.1;color:var(--wall)}
+.fk3d .fk-place.on b{color:var(--leather)}
+.fk3d .fk-place small{color:var(--dust);font-size:13.5px;line-height:1.45}
+.fk3d .fk-btn:focus-visible,.fk3d .fk-place:focus-visible,.fk3d .fk-hs:focus-visible,.fk3d .fk-view:focus-visible{outline:2px solid var(--leather);outline-offset:2px}
+@media (max-width:880px){
+  .fk3d .fk-head{grid-template-columns:1fr}
+  .fk3d .fk-stage{grid-template-columns:1fr}
+  .fk3d .fk-viewer{border-right:0;border-bottom:1px solid var(--line)}
+  .fk3d model-viewer{height:min(72vh,560px)}
+  .fk3d .fk-views{left:12px;right:auto;justify-content:flex-start}
+  .fk3d .fk-hint .fk-long{display:none}
+  .fk3d .fk-places{display:grid;grid-template-columns:1fr 1fr}
+  .fk3d .fk-places h3{grid-column:1/-1}
+  .fk3d .fk-place:nth-of-type(odd){border-right:1px solid var(--line)}
+}
+@media (max-width:480px){.fk3d .fk-places{grid-template-columns:1fr}.fk3d .fk-place:nth-of-type(odd){border-right:0}}
+@media (prefers-reduced-motion:reduce){.fk3d *{transition:none!important}}
+</style>
+
+<section class="fk3d" id="tour-3d">
+  <div class="fk-in">
+    <div class="fk-head">
+      <div>
+        <p class="fk-eyebrow">Tour 3D · Via Bernardino Corio 8, Milano</p>
+        <h2 class="fk-title">Entra in FUCKTORY.</h2>
+        <p class="fk-lead">Abbiamo scansionato lo spazio in fotogrammetria: centinaia di foto trasformate in un modello 3D. <strong>Giralo, avvicinati, scegli il tuo angolo</strong> prima ancora di venire a trovarci.</p>
+      </div>
+      <div class="fk-ctas">
+        <a class="fk-btn fk-primary" href="/rent">Affitta lo spazio</a>
+        <a class="fk-btn" href="/contactus">Prenota un sopralluogo</a>
+      </div>
+    </div>
+
+    <div class="fk-stage">
+      <div class="fk-viewer">
+        <model-viewer class="fk-mv"
+          src="https://cdn.jsdelivr.net/gh/Cloud1o/general@5e5e198864965667fd6198165369e0547915ff0c/fucktory-3d/fucktory-3d.glb"
+          poster="https://cdn.jsdelivr.net/gh/Cloud1o/general@5e5e198864965667fd6198165369e0547915ff0c/fucktory-3d/poster.webp"
+          alt="Modello 3D in fotogrammetria dello spazio FUCKTORY visto dall'alto"
+          camera-controls touch-action="pan-y" camera-orbit="200deg 42deg 68%"
+          min-camera-orbit="auto 8deg 12%" max-camera-orbit="auto 82deg 95%"
+          interpolation-decay="140" interaction-prompt="none" shadow-intensity="0" exposure="1.05" loading="lazy" reveal="auto">
+          <button class="fk-hs" slot="hotspot-vinili" data-id="vinili" data-position="0.403 0.665 1.766" data-normal="0.133 0.072 -0.988"><span>Parete dei vinili</span></button>
+          <button class="fk-hs" slot="hotspot-flash" data-id="flash" data-position="1.878 0.323 0.657" data-normal="-0.937 0.347 -0.043"><span>Flash e octabox</span></button>
+          <button class="fk-hs" slot="hotspot-lounge" data-id="lounge" data-position="-0.079 -0.656 -0.366" data-normal="-0.143 0.977 0.161"><span>Lounge</span></button>
+          <button class="fk-hs" slot="hotspot-synth" data-id="synth" data-position="-1.070 -0.450 1.096" data-normal="0.024 0.990 -0.138"><span>Synth e tastiere</span></button>
+          <button class="fk-hs" slot="hotspot-consolle" data-id="consolle" data-position="-1.823 -0.420 0.532" data-normal="-0.065 0.993 -0.096"><span>Consolle</span></button>
+          <button class="fk-hs" slot="hotspot-regia" data-id="regia" data-position="1.578 -0.405 -0.917" data-normal="0.303 0.715 0.630"><span>Postazione di lavoro</span></button>
+          <div class="fk-bar" slot="progress-bar"></div>
+        </model-viewer>
+        <div class="fk-views" role="group" aria-label="Punti di vista">
+          <button class="fk-view" data-orbit="200deg 42deg 68%" aria-pressed="true">Ingresso</button>
+          <button class="fk-view" data-orbit="20deg 45deg 66%" aria-pressed="false">Lounge</button>
+          <button class="fk-view" data-orbit="0deg 4deg 82%" aria-pressed="false">Pianta</button>
+        </div>
+        <p class="fk-hint">Trascina per girare<span class="fk-long"> · scorri per zoom</span></p>
+      </div>
+
+      <nav class="fk-places" aria-label="Luoghi dello spazio">
+        <h3>Cosa c'è dentro</h3>
+        <button class="fk-place" data-id="vinili"><b>Parete dei vinili</b><small>Il set più richiesto per ritratti, copertine e contenuti.</small></button>
+        <button class="fk-place" data-id="flash"><b>Flash e octabox</b><small>Due Godox 400 W, ombrello, octabox e pannelli. Inclusi nella sala pose.</small></button>
+        <button class="fk-place" data-id="lounge"><b>Lounge</b><small>Poltrone in pelle per pause, interviste e backstage.</small></button>
+        <button class="fk-place" data-id="synth"><b>Synth e tastiere</b><small>Strumenti a disposizione per sessioni e songwriting.</small></button>
+        <button class="fk-place" data-id="consolle"><b>Consolle</b><small>Giradischi per listening session, dj set ed eventi.</small></button>
+        <button class="fk-place" data-id="regia"><b>Postazione di lavoro</b><small>Scrivania per editing foto e video, anche in autonomia.</small></button>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<script>
+  window.ModelViewerElement = window.ModelViewerElement || {};
+  window.ModelViewerElement.meshoptDecoderLocation = "https://cdn.jsdelivr.net/npm/meshoptimizer@0.21.0/meshopt_decoder.js";
+  if (!window.customElements.get("model-viewer")) {
+    var s = document.createElement("script");
+    s.type = "module";
+    s.src = "https://cdn.jsdelivr.net/npm/@google/model-viewer@4.0.0/dist/model-viewer.min.js";
+    document.head.appendChild(s);
+  }
+  (function () {
+    var root = document.getElementById("tour-3d");
+    if (!root || root.dataset.ready) return;
+    root.dataset.ready = "1";
+    var mv = root.querySelector(".fk-mv");
+    var bar = root.querySelector(".fk-bar");
+    var hint = root.querySelector(".fk-hint");
+    var views = root.querySelectorAll(".fk-view");
+    var places = root.querySelectorAll(".fk-place");
+    var spots = root.querySelectorAll(".fk-hs");
+
+    mv.addEventListener("progress", function (e) {
+      var p = e.detail.totalProgress;
+      bar.style.transform = "scaleX(" + p + ")";
+      bar.style.opacity = p >= 1 ? 0 : 1;
+    });
+    mv.addEventListener("camera-change", function (e) {
+      if (e.detail.source === "user-interaction") hint.style.display = "none";
+    });
+
+    function mark(id) {
+      places.forEach(function (b) { b.classList.toggle("on", b.dataset.id === id); });
+      spots.forEach(function (b) { b.classList.toggle("on", b.dataset.id === id); });
+      views.forEach(function (b) { b.setAttribute("aria-pressed", "false"); });
+    }
+    function focusOn(id) {
+      var s = root.querySelector('.fk-hs[data-id="' + id + '"]');
+      if (!s) return;
+      var n = s.dataset.normal.split(" ").map(Number);
+      var floorLike = n[1] > 0.6;
+      var theta = floorLike ? mv.getCameraOrbit().theta + "rad" : Math.atan2(n[0], n[2]) + "rad";
+      mv.cameraTarget = s.dataset.position.split(" ").map(function (v) { return v + "m"; }).join(" ");
+      mv.cameraOrbit = theta + " " + (floorLike ? "48deg" : "68deg") + " 36%";
+      mark(id);
+    }
+    places.forEach(function (b) { b.addEventListener("click", function () { focusOn(b.dataset.id); }); });
+    spots.forEach(function (b) { b.addEventListener("click", function () { focusOn(b.dataset.id); }); });
+    views.forEach(function (b) {
+      b.addEventListener("click", function () {
+        mark(null);
+        mv.cameraTarget = "auto auto auto";
+        mv.cameraOrbit = b.dataset.orbit;
+        b.setAttribute("aria-pressed", "true");
+      });
+    });
+  })();
+</script>
