@@ -18,6 +18,13 @@ export ODOO_API_KEY="your-odoo-api-key"
 claude
 ```
 
+A second server, `odoo-demo1scala`, points at `https://demo1scala.odoo.com/mcp`
+and reads its key from `DEMO1SCALA_API_KEY`:
+
+```
+export DEMO1SCALA_API_KEY="your-demo1scala-api-key"
+```
+
 Claude Code asks you to approve project servers the first time it sees them.
 Check the connection with `claude mcp list` or `/mcp`.
 

@@ -13,6 +13,20 @@
       "env": {
         "AUTH_HEADER": "Bearer ${ODOO_API_KEY}"
       }
+    },
+    "odoo-demo1scala": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://demo1scala.odoo.com/mcp",
+        "--header",
+        "Authorization:${AUTH_HEADER}"
+      ],
+      "env": {
+        "AUTH_HEADER": "Bearer ${DEMO1SCALA_API_KEY}"
+      }
     }
   }
 }
